@@ -42,13 +42,18 @@ for y in range(len(input)) :
             num = ""
             isPart = False
             gears = set()
-    if isPart : parts.append(int(num))
+    if isPart : 
+        parts.append(int(num))
+        for g in gears :
+            if g in gearsD.keys() :
+                gearsD[g].append(int(num))
+            else :
+                gearsD[g] = [int(num)]
     num = ""
     isPart = False
     gears = set()
 
 print(f'Part A: sum of part nums = {sum(parts)}') #test assert = 4361
 
-print(gearsD)
 sumGears = sum([gearsD[g][0]*gearsD[g][1] for g in gearsD if len(gearsD[g]) == 2])
 print(f'Part A: sum of part nums = {sumGears}') #test assert = 467835
