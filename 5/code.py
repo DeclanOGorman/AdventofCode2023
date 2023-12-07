@@ -26,18 +26,24 @@ for s in seeds:
 print(f'Part A: min output = {min(seedOutputs)}') #test assert = 35
 
 seedRanges = [[seeds[i*2], seeds[i*2] + seeds[i*2+1] - 1] for i in range(int(len(seeds)/2))]
-print(seedRanges)
+#print(seedRanges)
 
 for m in maps:
-    sr2 = seedRanges.copy()
+    sr2 = list()
     for s in seedRanges : 
+        rangeHit = False
         for mR in m :
-            if s[0] <= mR[1] + mR[2] and s[1] >= mR[1] : #slice range
-                sr2.remove(s)
-                if s[0] < mR[0] : sr2.append([s[0], mR[0]])
-                sr2.append([mR[0] + max(0, s[0] - mR[1]), mR[0] + min(mR[2], s[1] - mR[1])])
-                if s[1] > mR[0]+mR[2] : sr2.append([mR[0]+mR[2], s[1]])
+            if s[0] <= mR[1] + mR[2]-1 and s[1] >= mR[1] : #slice range
+                if s[0] < mR[1] : 
+                    sr2.append([s[0], mR[1]-1]) # add pre-range
+                sr2.append([mR[0] + max(0, s[0] - mR[1]), mR[0] + min(mR[2]-1, s[1] - mR[1])])
+                if s[1] > mR[1]+mR[2] : 
+                    sr2.append([mR[1]+mR[2], s[1]]) #add post-range
+                rangeHit = True
+        if not rangeHit : sr2.append(s)
     seedRanges = sr2
-print(seedRanges)
+#    print(seedRanges)
+
+#soil 84, fertilizer 84, water 84, light 77, temperature 45, humidity 46, and location 46.
 
 print(f'Part B: min output = {min([r[0] for r in seedRanges])}') #test assert = 46
