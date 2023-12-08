@@ -26,7 +26,18 @@ for s in loc :
                 first = True
                 break
 print(step1)
-print(stepN)
+#print(stepN)
 
+print(20093* 18961* 12169* 22357* 20659* 13301)
 
-print(f'Part B: steps to get to simultaneous targets = {np.product(step1)}') #test assert = 6
+count, iterate = 0, step1[4]
+while True:
+    t = iterate * count
+    for a in step1:
+        if (t/a) is not int :
+            continue
+        else :
+            break
+    count += 1
+
+print(f'Part B: steps to get to simultaneous targets = {count}') #test assert = 6
