@@ -14,30 +14,16 @@ loc, steps, step1, stepN = {a for a in map if a.endswith('A')}, 0, list(), list(
 
 for s in loc :
     steps, cLoc, first = 0, s, True
-    while True : #not cLoc.endswith('Z') :
+    while not cLoc.endswith('Z') :
         cLoc = map[cLoc][0 if ins[steps % len(ins)] =='L' else 1]
         steps += 1
         if cLoc.endswith('Z') : 
-            if first : 
-                step1.append(steps)
-                first = False
-            else :
-                stepN.append(steps - step1[-1])
-                first = True
-                break
-print(step1)
-#print(stepN)
+            step1.append(steps)
 
-print(20093* 18961* 12169* 22357* 20659* 13301)
+for s in range(len(step1) -1) :
+    c = g = max(step1[s],step1[s+1])
+    while c%step1[s] !=0 or c%step1[s+1] !=0 :
+        c += g
+    step1[s+1] = c
 
-count, iterate = 0, step1[4]
-while True:
-    t = iterate * count
-    for a in step1:
-        if (t/a) is not int :
-            continue
-        else :
-            break
-    count += 1
-
-print(f'Part B: steps to get to simultaneous targets = {count}') #test assert = 6
+print(f'Part B: steps to get to simultaneous targets = {step1[-1]}') #test assert = 6
