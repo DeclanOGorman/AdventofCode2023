@@ -1,5 +1,3 @@
-import numpy as np
-
 with open('./8/input.txt', 'r') as f:
     ins = f.readline().strip()
     mapRaw = [a.strip().replace(' ','').replace('=(',',').replace(')','').split(',') for a in f if a.strip() != ""]
@@ -26,4 +24,4 @@ for s in range(len(step1) -1) :
         c += g
     step1[s+1] = c
 
-print(f'Part B: steps to get to simultaneous targets = {step1[-1]}') #test assert = 6
+print(f'Part B: steps to get to simultaneous Z targets = {step1[-1]}') #test assert = 6
