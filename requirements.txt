@@ -1,3 +1,5 @@
 numpy
 termcolor
 regex
+Dijkstar
+matplotlib
