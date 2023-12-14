@@ -22,4 +22,4 @@ print(f'Part A: reflections = {sum(mirrorsX) + sum(mirrorsY)*100}') #test assert
 
 mirrorsY = [findMirror(m, 1) for m in input]
 mirrorsX = [findMirror([list(x) for x in zip(*m)], 1) for m in input]
-print(f'Part A: reflections = {sum(mirrorsX) + sum(mirrorsY)*100}') #test assert = 400
+print(f'Part B: smudged reflections = {sum(mirrorsX) + sum(mirrorsY)*100}') #test assert = 400
